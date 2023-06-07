@@ -8,4 +8,8 @@
 	<slot />
 </button>
 
-<!-- TODO A.c: ⬇ uppercase text in button -->
+<style>
+	button {
+		text-transform: uppercase;
+	}
+</style>
