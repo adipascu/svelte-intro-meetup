@@ -2,6 +2,7 @@
 	import Balances from './lib/Balances.svelte'
 	import Dues from './lib/Dues.svelte'
 	import Expenses from './lib/Expenses.svelte'
+	import Button from './lib/Button.svelte'
 	import { expenses, balances, dues, users } from './lib/stores'
 	import type { Expense, User } from './types'
 
@@ -33,12 +34,9 @@
 <main>
 	<h1>{title}</h1>
 
-	<!-- TODO A.a: ⬆ use custom title -->
-	<!-- TODO A.b: ⬇ use Button instead of button, with text in uppercase -->
-
-	<button class="secondary">expenses</button>
-	<button class="secondary outline">balance</button>
-	<button class="secondary outline">dues</button>
+	<Button class="secondary" outline={false}>expenses</Button>
+	<Button class="secondary" outline={true}>balance</Button>
+	<Button class="secondary" outline={true}>dues</Button>
 
 	<!-- TODO B: ⬆ those Buttons should all have "secondary" as class, outline prop for views not selected -->
 
