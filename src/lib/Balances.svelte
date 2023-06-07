@@ -21,6 +21,7 @@
 	<Button
 		on:click={(event) => {
 			dispatch('add', { name: userNameInputElement.value })
+			userNameInputElement.value = ''
 		}}>add user</Button
 	>
 </div>
