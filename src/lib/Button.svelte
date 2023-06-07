@@ -1,10 +1,8 @@
 <script lang="ts">
 	export let outline = false
-	let clazz: string
-	export { clazz as class }
 </script>
 
-<button class={outline ? clazz + ' outline' : clazz} on:click>
+<button class:outline {...$$restProps} on:click>
 	<slot />
 </button>
 
