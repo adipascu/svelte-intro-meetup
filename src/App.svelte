@@ -31,7 +31,7 @@
 </script>
 
 <main>
-	<h1>title</h1>
+	<h1>{title}</h1>
 
 	<!-- TODO A.a: ⬆ use custom title -->
 	<!-- TODO A.b: ⬇ use Button instead of button, with text in uppercase -->
