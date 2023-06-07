@@ -65,8 +65,36 @@ const defaultExpenses: Expense[] = [
 
 export const users = writable<User[]>(defaultUsers)
 
-export const expenses = writable<Expense[]>([])
-// TODO E: ⬆ have some things in that store
+export const expenses = writable<Expense[]>([
+	{
+		title: 'ice cream',
+		amount: 15,
+		by: 'Donald',
+		for: ['Huey', 'Dewey', 'Louie'],
+		settled: false,
+	},
+	{
+		title: 'bus fare',
+		amount: 5,
+		by: 'Dewey',
+		for: ['Huey', 'Louie'],
+		settled: true,
+	},
+	{
+		title: 'comic book',
+		amount: 10,
+		by: 'Louie',
+		for: ['Dewey'],
+		settled: false,
+	},
+	{
+		title: 'sandwiches',
+		amount: 20,
+		by: 'Donald',
+		for: ['Dewey', 'Huey', 'Louie', 'Donald'],
+		settled: false,
+	},
+])
 
 export const balances = derived([users, expenses], ([$users, $expenses]): Balance[] => {
 	const ledger: {
