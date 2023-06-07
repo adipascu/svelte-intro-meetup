@@ -14,18 +14,28 @@
 </script>
 
 <form on:submit={submit} {...$$restProps}>
-	<!-- TODO H.a: ⬇ add missing field & fix the others so that an expense can be submitted -->
-
+	<label for="title">
+		Title
+		<input type="text" id="title" name="title" required bind:value={form.title} />
 	<label for="buyer">Who paid?</label>
-	<select id="buyer" required>
+	<select id="buyer" required bind:value={form.by}>
 		<option value="" selected>Select a user…</option>
+		{#each users as user}
+			<option value={user.name}>{user.name}</option>
+		{/each}
 	</select>
 
 	<fieldset>
 		<legend>For whom?</legend>
 		{#each users as user}
 			<label for={user.name}>
-				<input type="checkbox" id={user.name} name="size" required={!form.for.length} />
+				<input
+					type="checkbox"
+					id={user.name}
+					required={!form.for.length}
+					bind:group={form.for}
+					value={user.name}
+				/>
 				{user.name}
 			</label>
 		{/each}
@@ -33,6 +43,7 @@
 
 	<label for="amount">
 		Amount
-		<input disabled />
+		<input type="number" id="amount" name="amount" required bind:value={form.amount} />
 	</label>
+	<button type="submit">submit</button>
 </form>
