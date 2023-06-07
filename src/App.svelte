@@ -27,7 +27,12 @@
 	}
 
 	const clearDebts = () => {
-		// TODO F.b: remove all expenses
+		expenses.update((expenses) =>
+			expenses.map((expense) => ({
+				...expense,
+				settled: true,
+			}))
+		)
 	}
 </script>
 
@@ -46,6 +51,6 @@
 	{:else if selectedView === 'balance'}
 		<Balances balances={$balances} on:add={addUser} />
 	{:else if selectedView === 'dues'}
-		<Dues />
+		<Dues dues={$dues} on:clearExpenses={clearDebts} />
 	{/if}
 </main>

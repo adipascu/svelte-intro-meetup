@@ -108,15 +108,17 @@ export const balances = derived([users, expenses], ([$users, $expenses]): Balanc
 	)
 
 	$expenses.forEach((expense) => {
-		const amount = expense.amount / expense.for.length
+		if (!expense.settled) {
+			const amount = expense.amount / expense.for.length
 
-		const minusPayer = expense.for.filter((user) => user !== expense.by)
-		const paidMinusOwn = amount * minusPayer.length
+			const minusPayer = expense.for.filter((user) => user !== expense.by)
+			const paidMinusOwn = amount * minusPayer.length
 
-		ledger[expense.by] += paidMinusOwn
+			ledger[expense.by] += paidMinusOwn
 
-		for (let borrower of minusPayer) {
-			ledger[borrower] -= amount
+			for (let borrower of minusPayer) {
+				ledger[borrower] -= amount
+			}
 		}
 	})
 
@@ -154,6 +156,5 @@ export const dues = derived(balances, ($ledger) => {
 
 		copy = copy.filter(([_user, amount]) => amount)
 	}
-
 	return dues
 })
