@@ -39,18 +39,14 @@
 			>{view}</Button
 		>
 	{/each}
-
-	<!-- TODO C: ⬆ loop through views instead of hardcoding 3 buttons, ⬇ render only selected view -->
-
 	<hr />
 
-	<Expenses expenses={$expenses} users={$users} on:add={addExpense} />
+	{#if selectedView === 'expenses'}
+		<Expenses expenses={$expenses} users={$users} on:add={addExpense} />
+	{:else if selectedView === 'balance'}
+		<Balances balances={$balances} />
+	{:else if selectedView === 'dues'}
+		<Dues />
+	{/if}
 
-	<hr />
-
-	<Balances balances={$balances} />
-
-	<hr />
-
-	<Dues />
 </main>
