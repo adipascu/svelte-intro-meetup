@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte'
 	import type { Balance, User } from '../types'
 	import Button from './Button.svelte'
+	let userNameInputElement: HTMLInputElement
 
 	export let balances: Balance[] = []
 
@@ -10,18 +11,18 @@
 		return (balance > 0 ? 'is owed ' : 'owes ') + Math.abs(balance)
 	}
 
-	let newUser = ''
-
 	const dispatch = createEventDispatcher<{
 		add: User
 	}>()
-
-	// TODO D: ⬇ bind new user name to input, ↕ dispatch custom event with user
 </script>
 
 <div>
-	<input placeholder="Uncle Scrooge" />
-	<Button>add user</Button>
+	<input placeholder="Uncle Scrooge" bind:this={userNameInputElement} />
+	<Button
+		on:click={(event) => {
+			dispatch('add', { name: userNameInputElement.value })
+		}}>add user</Button
+	>
 </div>
 
 {#each balances as [name, balance]}

@@ -44,9 +44,8 @@
 	{#if selectedView === 'expenses'}
 		<Expenses expenses={$expenses} users={$users} on:add={addExpense} />
 	{:else if selectedView === 'balance'}
-		<Balances balances={$balances} />
+		<Balances balances={$balances} on:add={addUser} />
 	{:else if selectedView === 'dues'}
 		<Dues />
 	{/if}
-
 </main>
