@@ -19,7 +19,7 @@
 		if (!f.title || !f.amount || !f.for.length || !f.by) {
 			throw new Error('incomplete data!')
 		}
-		// TODO H.b: ⬇ add the received expense to the list
+		expenses.update((list) => [f, ...list])
 	}
 
 	const addUser = (e: CustomEvent<User>) => {
