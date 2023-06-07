@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	export let outline = false
-	let clazz
+	let clazz: string
 	export { clazz as class }
 </script>
 
