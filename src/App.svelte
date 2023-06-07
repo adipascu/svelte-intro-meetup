@@ -34,11 +34,11 @@
 <main>
 	<h1>{title}</h1>
 
-	<Button class="secondary" outline={false}>expenses</Button>
-	<Button class="secondary" outline={true}>balance</Button>
-	<Button class="secondary" outline={true}>dues</Button>
-
-	<!-- TODO B: ⬆ those Buttons should all have "secondary" as class, outline prop for views not selected -->
+	{#each views as view}
+		<Button class="secondary" outline={view !== selectedView} on:click={changeView(view)}
+			>{view}</Button
+		>
+	{/each}
 
 	<!-- TODO C: ⬆ loop through views instead of hardcoding 3 buttons, ⬇ render only selected view -->
 
